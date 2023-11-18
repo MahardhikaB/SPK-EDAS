@@ -1,0 +1,135 @@
+@extends('layouts.template')
+
+@section('title', 'Dashboard')
+
+@section('content')
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Data Kriteria</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i> Dashboard</h3>
+                <button type="button" class="btn btn-sm btn-success ml-auto" data-toggle="modal"
+                    data-target="#exampleModal">
+                    + Tambah Data
+                </button>
+            </div>
+
+
+            <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Alternatif</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($alternatif as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->nama_alternatif }}</td>
+                                <td>
+                                    <button data-toggle="modal" data-target="#inputNilai"
+                                        onclick='setAlternatif(@json($item))' class="btn btn-warning">Input
+                                        Nilai</button>
+                                    <form action="{{ url('kriteria/' . $item->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ url('alternatif') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="nama">Nama Alternatif</label>
+                                        <input type="text" class="form-control" id="nama"
+                                            placeholder="Masukkan nama alternatif" name="nama_alternatif">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="inputNilai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="namaAlternatif"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url('alternatif') }}" method="POST">
+                                @csrf
+                                <input name="id_alternatif" id="idAlternatif" type="hidden">
+                                <div class="form-group">
+                                    <label for="nama">Nama Alternatif</label>
+                                    <input type="text" class="form-control" id="nama"
+                                        placeholder="Masukkan nama alternatif" name="nama_alternatif">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <script>
+        let alternatif;
+
+        function setAlternatif(newAlternatif) {
+            alternatif = newAlternatif;
+            console.log(alternatif);
+            document.getElementById('namaAlternatif').innerHTML = alternatif.nama_alternatif;
+            document.getElementById('idAlternatif').value = alternatif.id;
+        }
+    </script>
+@endsection
+
+@push('css')
+@endpush
+
+@push('scripts')
+    {{--    <script> --}}
+    {{--        alert('Selamat Datang'); --}}
+    {{--    </script> --}}
+@endpush
