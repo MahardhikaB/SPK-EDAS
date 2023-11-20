@@ -17,10 +17,6 @@ class KriteriaController extends Controller
     public function store(Request $request)
     {
 
-        // $request->validate([
-        //         'nama_kriteria'=>'required',
-        //         'bobot'=>'required|numeric',
-        // ]);
         $request['jenis'] = $request->jenis == 'on' ? true : false;
         kriteria::create($request->all());
 

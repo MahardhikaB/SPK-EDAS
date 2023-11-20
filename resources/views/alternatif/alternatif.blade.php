@@ -34,6 +34,9 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Alternatif</th>
+                            @foreach ($kriteria as $krt)
+                                <th>C{{ $loop->iteration }}</th>
+                            @endforeach
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -42,6 +45,18 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_alternatif }}</td>
+                                @foreach ($kriteria as $krt)
+                                    <td>
+                                        @php
+                                            $ak = $alternatifKriteriaGrouped[$item->id][$krt->id] ?? null;
+                                        @endphp
+
+                                        @if ($ak)
+                                            {{ $ak[0]->value }}
+                                        @endif
+                                    </td>
+                                @endforeach
+
                                 <td>
                                     <button data-toggle="modal" data-target="#inputNilai"
                                         onclick='setAlternatif(@json($item))' class="btn btn-warning">Input
@@ -95,14 +110,23 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ url('alternatif') }}" method="POST">
+                            <form action="{{ url('alternatif_kriteria') }}" method="POST">
                                 @csrf
                                 <input name="id_alternatif" id="idAlternatif" type="hidden">
-                                <div class="form-group">
-                                    <label for="nama">Nama Alternatif</label>
-                                    <input type="text" class="form-control" id="nama"
-                                        placeholder="Masukkan nama alternatif" name="nama_alternatif">
-                                </div>
+                                @foreach ($kriteria as $krt)
+                                    <div class="form-group">
+                                        <label for="nama">{{ $krt->nama_kriteria }}</label>
+                                        <select name="value[]" id="idKriteria" class="form-control">
+                                            @foreach ($subKriteria as $sk)
+                                                @if ($sk->id_kriteria == $krt->id)
+                                                    <option value="{{ $sk->value }}">{{ $sk->range_kriteria }}</option>
+                                                @endif
+                                            @endforeach
+                                        <input name="id[]" id="idKriteria" type="hidden" value="{{ $krt->id }}">
+                                        {{-- <input type="text" class="form-control" id="nama"
+                                            placeholder="Masukkan nama alternatif" name="value[]"> --}}
+                                    </div>
+                                @endforeach
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
