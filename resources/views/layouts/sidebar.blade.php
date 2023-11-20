@@ -1,8 +1,7 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{url('/')}}" class="brand-link">
-        <img src="{{asset('assets/logo.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-bold">Kios Sahabat Tani</span>
+        <span class="brand-text font-weight-bold">SPK EDAS</span>
     </a>
 
     <!-- Sidebar -->
@@ -17,7 +16,7 @@
                 {{--          <a href="#" class="d-block">{{Auth::user()->username}}</a>--}}
                 <a href="{{url('profile')}}" class="d-block">
                     <i class="fas fa-user mx-1"></i>
-                    User
+                    Untitled
                 </a>
             </div>
         </div>
