@@ -55,55 +55,128 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ url('kriteria/' . $item->id . '/edit') }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ url('kriteria/' . $item->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger">Hapus</button>
-                                    </form>
+                                    <button data-toggle="modal" data-target="#modalUpdate"
+                                        onclick="updateKriteria({{ $item }})" class="btn btn-warning">Edit</button>
+                                    {{-- <form action="{{ url('kriteria/' . $item->id) }}" method="POST" class="d-inline"> --}}
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger"
+                                        onclick="deleteKriteria({{ $item->id }})">Hapus</button>
+                                    {{-- </form> --}}
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ url('kriteria') }}" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="nama">Nama</label>
-                                        <input type="text" class="form-control" id="nama"
-                                            placeholder="Masukkan nama kriteria" name="nama_kriteria">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="bobot">Bobot</label>
-                                        <input type="number" step="0.01" class="form-control" id="bobot"
-                                            placeholder="Bobot" name="bobot">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jenis">Jenis</label>
-                                        <input type="checkbox" class="form-control" id="jenis"
-                                            placeholder="Benefit/Cost" name="jenis">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-                            </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url('kriteria') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" id="nama"
+                                        placeholder="Masukkan nama kriteria" name="nama_kriteria">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bobot">Bobot</label>
+                                    <input type="number" step="0.01" class="form-control" id="bobot"
+                                        placeholder="Bobot" name="bobot">
+                                </div>
+                                <div class="form-group">
+                                    <label for="jenis">Jenis (Centang untuk Cost)</label>
+                                    <input type="checkbox" class="form-control" id="jenis" placeholder="Benefit/Cost"
+                                        name="jenis">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <!-- /.card -->
+            </div>
 
+            {{-- Modal for update --}}
+            <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url('kriteria') }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" id="updateKriteriaId" name="id">
+                                <div class="form-group">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" id="updateKriteriaName"
+                                        placeholder="Masukkan nama kriteria" name="nama_kriteria">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bobot">Bobot</label>
+                                    <input type="number" step="0.01" class="form-control" id="updateKriteriaBobot"
+                                        placeholder="Bobot" name="bobot">
+                                </div>
+                                <div class="form-group">
+                                    <label for="jenis">Jenis (Centang untuk Cost)</label>
+                                    <input type="checkbox" class="form-control" id="updateKriteriaJenis"
+                                        placeholder="Benefit/Cost" name="jenis">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card -->
+            <script>
+                // kriteria hold the value of kriteria in json format
+                const kriteria = null;
+
+                function updateKriteria(kriteria) {
+                    kriteria = kriteria;
+                    $('#updateKriteriaId').val(kriteria.id);
+                    $('#updateKriteriaName').val(kriteria.nama_kriteria);
+                    $('#updateKriteriaBobot').val(kriteria.bobot);
+                    if (kriteria.jenis == 1) {
+                        $('#updateKriteriaJenis').prop('checked', true);
+                    } else {
+                        $('#updateKriteriaJenis').prop('checked', false);
+                    }
+                    // change the action url 
+                    $('#modalUpdate form').attr('action', '{{ url('kriteria') }}/' + kriteria.id);
+                    console.log(kriteria);
+                }
+
+                function deleteKriteria(id) {
+                    if (confirm('Apakah Anda yakin ingin menghapus kriteria ini?')) {
+                        var form = document.createElement('form');
+                        form.action = '{{ url('kriteria') }}/' + id;
+                        form.method = 'POST';
+                        form.innerHTML = '<input type="hidden" name="_method" value="DELETE">' + '{{ csrf_field() }}';
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                }
+            </script>
     </section>
 @endsection
 
@@ -111,7 +184,4 @@
 @endpush
 
 @push('scripts')
-    {{--    <script> --}}
-    {{--        alert('Selamat Datang'); --}}
-    {{--    </script> --}}
 @endpush
