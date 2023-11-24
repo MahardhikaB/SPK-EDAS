@@ -61,11 +61,11 @@
                                     <button data-toggle="modal" data-target="#inputNilai"
                                         onclick='setAlternatif(@json($item))' class="btn btn-warning">Input
                                         Nilai</button>
-                                    <form action="{{ url('kriteria/' . $item->id) }}" method="POST" class="d-inline">
+                                    {{-- <form action="{{ url('kriteria/' . $item->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger">Hapus</button>
-                                    </form>
+                                    </form> --}}
                                 </td>
                             </tr>
                         @endforeach
