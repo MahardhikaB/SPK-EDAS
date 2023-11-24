@@ -179,6 +179,69 @@
                 </table>
             </div>
     </section>
+
+    <!-- Table SP & SN -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>SP & SN</h3>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nama Alternatif</th>
+                            <th>SP</th>
+                            <th>SN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($alternatif as $item_alternatif)
+                            <tr>
+                                <td>{{ $item_alternatif->nama_alternatif }}</td>
+                                <td>{{ $sp[$item_alternatif->id] }}</td>
+                                <td>{{ $sn[$item_alternatif->id] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+    </section>
+
+    <!-- Table NSP & NSN -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>NSP & NSN</h3>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nama Alternatif</th>
+                            <th>NSP</th>
+                            <th>NSN</th>
+                        </tr>   
+                    </thead>
+                    <tbody>
+                        @foreach ($alternatif as $item_alternatif)
+                            <tr>
+                                <td>{{ $item_alternatif->nama_alternatif }}</td>
+                                <td>{{ $nsp[$item_alternatif->id] }}</td>
+                                <td>{{ $nsn[$item_alternatif->id] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+    </section>
+
     <script></script>
 @endsection
 
