@@ -18,6 +18,16 @@
     
 
         <!-- Default box -->
+        {{-- mengecek if kriteria isi nol --}}
+        @if ($kriteria->count() == 0)
+        <section class="content">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Data Kosong</h1>
+                </div>
+            </div>
+        </section>
+        @endif
         @foreach ($kriteria as $item)
         <section class="content">
             <div class="card">
@@ -96,6 +106,7 @@
                             <input type="hidden" class="form-control" id="id_kriteria" name="id_kriteria" value="">
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>

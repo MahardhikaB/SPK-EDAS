@@ -100,9 +100,9 @@ class PerhitunganController extends Controller
     }
 
     public function reset() {
-        Alternatif::delete();
-        kriteria::delete();
-        return redirect()->route('dashboard');
+        Alternatif::query()->delete();
+        kriteria::query()->delete();
+        return redirect('/');
     }
 
     public function hasil() {
