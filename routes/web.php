@@ -26,3 +26,5 @@ Route::resource('sub_kriteria', SubKriteriaController::class);
 Route::resource('alternatif', AlternatifController::class);
 Route::resource('alternatif_kriteria', AlternatifKriteriaController::class);
 Route::resource('perhitungan', PerhitunganController::class);
+Route::post('/reset', [PerhitunganController::class, 'reset']);
+Route::get('/hasil_akhir', [PerhitunganController::class, 'hasil']);

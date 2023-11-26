@@ -69,7 +69,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/hasil') }}" class="nav-link">
+                    <a href="{{ url('/hasil_akhir') }}" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             Hasil Akhir
