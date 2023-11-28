@@ -24,4 +24,23 @@ class SubKriteriaController extends Controller
         return redirect('sub_kriteria')
             ->with('success','Sub Kriteria berhasil ditambahkan');
     }
+
+    //update function
+    public function update(Request $request, $id)
+    {
+        $sub_kriteria = SubKriteria::find($id);
+        $sub_kriteria->update($request->all());
+
+        return redirect('sub_kriteria')
+            ->with('success','Sub Kriteria berhasil diupdate');
+    }
+
+    public function destroy($id)
+    {
+        $data = SubKriteria::find($id);
+        $data->delete();
+
+        return redirect('sub_kriteria')
+            ->with('success','Sub berhasil dihapus');
+    }
 }
