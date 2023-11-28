@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{url('/')}}" class="brand-link">
+    <a href="{{url('/')}}" class="brand-link text-center">
         <span class="brand-text font-weight-bold">SPK EDAS</span>
     </a>
 
@@ -14,10 +14,6 @@
             {{--            </div>--}}
             <div class="info">
                 {{--          <a href="#" class="d-block">{{Auth::user()->username}}</a>--}}
-                <a href="{{url('profile')}}" class="d-block">
-                    <i class="fas fa-user mx-1"></i>
-                    Untitled
-                </a>
             </div>
         </div>
 

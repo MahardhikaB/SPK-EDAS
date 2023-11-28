@@ -32,7 +32,6 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>No</th>
                             <th>Kode Kriteria</th>
                             <th>Nama Kriteria</th>
                             <th>Bobot</th>
@@ -43,7 +42,6 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
                                 <td>C{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_kriteria }}</td>
                                 <td>{{ $item->bobot }}</td>

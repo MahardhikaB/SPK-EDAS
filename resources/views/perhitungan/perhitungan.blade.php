@@ -20,7 +20,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>Bobot</h3>
+                <h3 class="card-title"></i>Bobot</h3>
             </div>
 
 
@@ -48,7 +48,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>Matrix Keputusan</h3>
+                <h3 class="card-title"></i>Matrix Keputusan</h3>
             </div>
 
 
@@ -90,7 +90,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>Matrix AV</h3>
+                <h3 class="card-title"></i>Matrix AV</h3>
             </div>
 
 
@@ -118,7 +118,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>PDA</h3>
+                <h3 class="card-title"></i>PDA</h3>
             </div>
 
 
@@ -152,7 +152,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>NDA</h3>
+                <h3 class="card-title"></i>NDA</h3>
             </div>
 
 
@@ -186,7 +186,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>SP & SN</h3>
+                <h3 class="card-title"></i>SP & SN</h3>
             </div>
 
             <div class="card-body">
@@ -217,7 +217,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>NSP & NSN</h3>
+                <h3 class="card-title"></i>NSP & NSN</h3>
             </div>
 
             <div class="card-body">
@@ -248,7 +248,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>NSP & NSN</h3>
+                <h3 class="card-title"></i>NSP & NSN</h3>
             </div>
 
             <div class="card-body">

@@ -32,7 +32,6 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>No</th>
                             <th>Nama Alternatif</th>
                             @foreach ($kriteria as $krt)
                                 <th>C{{ $loop->iteration }}</th>
@@ -43,7 +42,6 @@
                     <tbody>
                         @foreach ($alternatif as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_alternatif }}</td>
                                 @foreach ($kriteria as $krt)
                                     <td>

@@ -32,7 +32,7 @@
         <section class="content">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>{{ $item->nama_kriteria }}
+                    <h3 class="card-title">{{ $item->nama_kriteria }}
                     </h3>
                     <button type="button" class="btn btn-sm btn-success ml-auto" data-toggle="modal"
                         data-target="#kriteriaModal" onclick='setKriteria(@json($item))'>
@@ -44,7 +44,6 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>Rentang Kriteria</th>
                                 <th>Nilai</th>
                                 <th>Aksi</th>
@@ -60,7 +59,6 @@
                                         $i++;
                                     @endphp
                                     <tr>
-                                        <td>{{ $i }}</td>
                                         <td>{{ $sub_item->range_kriteria }}</td>
                                         <td>{{ $sub_item->value }}</td>
                                         <td>
