@@ -29,7 +29,7 @@
 
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table">
                     <thead>
                         <tr>
                             <th>Kode Kriteria</th>
@@ -176,6 +176,18 @@
                 }
             </script>
     </section>
+    <style>
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        .custom-table th, .custom-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
 @endsection
 
 @push('css')

@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover custom-table">
                         <thead>
                             <tr>
                                 <th>Rentang Kriteria</th>
@@ -203,6 +203,20 @@
             $('#updateIdSubKriteria').val(sub_kriteria.id)
         }
     </script>
+
+    <style>
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
 @endsection
 
 @push('css')

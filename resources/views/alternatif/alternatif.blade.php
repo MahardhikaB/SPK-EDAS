@@ -21,15 +21,14 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title"></i>Data Alternatif</h3>
-                <button type="button" class="btn btn-sm btn-success ml-auto" data-toggle="modal"
-                    data-target="#exampleModal">
+                <button type="button" class="btn btn-sm btn-success ml-auto" data-toggle="modal" data-target="#exampleModal">
                     + Tambah Data
                 </button>
             </div>
 
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table">
                     <thead>
                         <tr>
                             <th>Nama Alternatif</th>
@@ -120,8 +119,9 @@
                                                     <option value="{{ $sk->value }}">{{ $sk->range_kriteria }}</option>
                                                 @endif
                                             @endforeach
-                                        <input name="id[]" id="idKriteria" type="hidden" value="{{ $krt->id }}">
-                                        {{-- <input type="text" class="form-control" id="nama"
+                                            <input name="id[]" id="idKriteria" type="hidden"
+                                                value="{{ $krt->id }}">
+                                            {{-- <input type="text" class="form-control" id="nama"
                                             placeholder="Masukkan nama alternatif" name="value[]"> --}}
                                     </div>
                                 @endforeach
@@ -145,6 +145,20 @@
             document.getElementById('idAlternatif').value = alternatif.id;
         }
     </script>
+
+    <style>
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
 @endsection
 
 @push('css')
