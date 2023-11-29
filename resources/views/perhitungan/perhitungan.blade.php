@@ -25,7 +25,7 @@
 
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover text-center">
                     <thead>
                         <tr>
                             @foreach ($kriteria as $item)
@@ -53,7 +53,7 @@
 
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table text-center">
                     <thead>
                         <tr>
                             <th>Nama Alternatif</th>
@@ -95,7 +95,7 @@
 
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table text-center">
                     <thead>
                         <tr>
                             @foreach ($av as $item_av)
@@ -123,7 +123,7 @@
 
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table">
                     <thead>
                         <tr>
                             <th>Nama Alternatif</th>
@@ -137,7 +137,11 @@
                             <tr>
                                 <td>{{ $item_alternatif->nama_alternatif }}</td>
                                 @foreach($kriteria as $item_kriteria)
+                                @if($pda[$item_alternatif->id][$item_kriteria->id] == 0)
                                     <td>{{ $pda[$item_alternatif->id][$item_kriteria->id] }}</td>
+                                @else
+                                    <td>{{ number_format($pda[$item_alternatif->id][$item_kriteria->id], 4) }}</td>
+                                @endif
                                 @endforeach
                             </tr>
                         @endforeach
@@ -157,7 +161,7 @@
 
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table">
                     <thead>
                         <tr>
                             <th>Nama Alternatif</th>
@@ -171,7 +175,11 @@
                             <tr>
                                 <td>{{ $item_alternatif->nama_alternatif }}</td>
                                 @foreach($kriteria as $item_kriteria)
+                                @if($nda[$item_alternatif->id][$item_kriteria->id] == 0)
                                     <td>{{ $nda[$item_alternatif->id][$item_kriteria->id] }}</td>
+                                @else
+                                    <td>{{ number_format($nda[$item_alternatif->id][$item_kriteria->id], 4) }}</td>
+                                @endif
                                 @endforeach
                             </tr>
                         @endforeach
@@ -190,7 +198,7 @@
             </div>
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table">
                     <thead>
                         <tr>
                             <th>Nama Alternatif</th>
@@ -200,11 +208,19 @@
                     </thead>
                     <tbody>
                         @foreach ($alternatif as $item_alternatif)
+                        @if($sp[$item_alternatif->id] == 0)
                             <tr>
                                 <td>{{ $item_alternatif->nama_alternatif }}</td>
                                 <td>{{ $sp[$item_alternatif->id] }}</td>
                                 <td>{{ $sn[$item_alternatif->id] }}</td>
                             </tr>
+                        @else
+                            <tr>
+                                <td>{{ $item_alternatif->nama_alternatif }}</td>
+                                <td>{{ number_format($sp[$item_alternatif->id], 4) }}</td>
+                                <td>{{ number_format($sn[$item_alternatif->id], 4) }}</td>
+                            </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -221,7 +237,7 @@
             </div>
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table">
                     <thead>
                         <tr>
                             <th>Nama Alternatif</th>
@@ -231,11 +247,19 @@
                     </thead>
                     <tbody>
                         @foreach ($alternatif as $item_alternatif)
+                        @if($nsp[$item_alternatif->id] == 0)
                             <tr>
                                 <td>{{ $item_alternatif->nama_alternatif }}</td>
                                 <td>{{ $nsp[$item_alternatif->id] }}</td>
                                 <td>{{ $nsn[$item_alternatif->id] }}</td>
                             </tr>
+                        @else
+                            <tr>
+                                <td>{{ $item_alternatif->nama_alternatif }}</td>
+                                <td>{{ number_format($nsp[$item_alternatif->id], 4) }}</td>
+                                <td>{{ number_format($nsn[$item_alternatif->id], 4) }}</td>
+                            </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -248,11 +272,11 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"></i>NSP & NSN</h3>
+                <h3 class="card-title"></i>AS</h3>
             </div>
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table">
                     <thead>
                         <tr>
                             <th>Nama Alternatif</th>
@@ -261,16 +285,36 @@
                     </thead>
                     <tbody>
                         @foreach ($alternatif as $item_alternatif)
+                        @if($as[$item_alternatif->id] == 0)
                             <tr>
                                 <td>{{ $item_alternatif->nama_alternatif }}</td>
                                 <td>{{ $as[$item_alternatif->id] }}</td>
                             </tr>
+                        @else
+                            <tr>
+                                <td>{{ $item_alternatif->nama_alternatif }}</td>
+                                <td>{{ number_format($as[$item_alternatif->id], 4) }}</td>
+                            </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
             </div>
     </section>
 
+    <style>
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        .custom-table th, .custom-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+    
     <script></script>
 @endsection
 

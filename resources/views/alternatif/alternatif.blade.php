@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Data Kriteria</h1>
+                    <h1>Alternatif</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -20,7 +20,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i> Dashboard</h3>
+                <h3 class="card-title"></i>Data Alternatif</h3>
                 <button type="button" class="btn btn-sm btn-success ml-auto" data-toggle="modal"
                     data-target="#exampleModal">
                     + Tambah Data

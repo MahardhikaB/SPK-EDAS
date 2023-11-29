@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Data Perhitungan</h1>
+                    <h1>Hasil Akhir</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -20,11 +20,11 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt my-2"></i>NSP & NSN</h3>
+                <h3 class="card-title"></i>Perankingan</h3>
             </div>
 
             <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table">
                     <thead>
                         <tr>
                             <th>Nama Alternatif</th>
@@ -40,17 +40,38 @@
                             </tr>
                         @endforeach --}}
                         @foreach ($as as $key => $value)
+                        @if ($value == 0)
                             <tr>
                                 <td>{{ $key }}</td>
                                 <td>{{ $value }}</td>
                                 <td>{{$loop->iteration}}</td>
                             </tr>
+                        @else
+                            <tr>
+                                <td>{{ $key }}</td>
+                                <td>{{ number_format($value, 4) }}</td>
+                                <td>{{$loop->iteration}}</td>
+                            </tr>
+                        @endif
                         @endforeach
 
                     </tbody>
                 </table>
             </div>
     </section>
+
+    <style>
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        .custom-table th, .custom-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
 
     <script></script>
 @endsection
