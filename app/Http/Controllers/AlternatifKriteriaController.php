@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alternatif;
 use App\Models\AlternatifKriteria;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,13 @@ class AlternatifKriteriaController extends Controller
     {
         // dd($request->all());
         $id_alternatif = $request->id_alternatif;
+
+        // update alternatif name from request->nama_alternatif
+        $alternatif = Alternatif::find($id_alternatif);
+        $alternatif->update([
+            'nama_alternatif' => $request->nama_alternatif,
+        ]);
+
         foreach($request->id as $key => $value){
             // check if data with 'id_alternatif' and 'id_kriteria' already exists on table 'alternatif_kriteria'
             $alternatif_kriteria = AlternatifKriteria::where('id_alternatif', $id_alternatif)

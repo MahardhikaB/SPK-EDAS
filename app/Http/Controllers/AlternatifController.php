@@ -32,4 +32,13 @@ class AlternatifController extends Controller
         return redirect('alternatif')
             ->with('success', 'Alternatif berhasil ditambahkan');
     }
+
+    public function destroy($id)
+    {
+        $data = Alternatif::find($id);
+        $data->delete();
+
+        return redirect('alternatif')
+            ->with('success','Alternatif berhasil dihapus');
+    }
 }

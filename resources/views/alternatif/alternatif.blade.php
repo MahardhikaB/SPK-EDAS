@@ -26,7 +26,6 @@
                 </button>
             </div>
 
-
             <div class="card-body">
                 <table class="table table-bordered table-hover custom-table">
                     <thead>
@@ -47,22 +46,19 @@
                                         @php
                                             $ak = $alternatifKriteriaGrouped[$item->id][$krt->id] ?? null;
                                         @endphp
-
                                         @if ($ak)
                                             {{ $ak[0]->value }}
                                         @endif
                                     </td>
                                 @endforeach
-
                                 <td>
                                     <button data-toggle="modal" data-target="#inputNilai"
                                         onclick='setAlternatif(@json($item))' class="btn btn-warning">Input
                                         Nilai</button>
-                                    {{-- <form action="{{ url('kriteria/' . $item->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger">Hapus</button>
-                                    </form> --}}
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#deleteAltButton" onclick="setAlternatif({{ $item }})">
+                                        Hapus
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -87,8 +83,9 @@
                                         <input type="text" class="form-control" id="nama"
                                             placeholder="Masukkan nama alternatif" name="nama_alternatif">
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -98,16 +95,16 @@
             <!-- Modal -->
             <div class="modal fade" id="inputNilai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="namaAlternatif"></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ url('alternatif_kriteria') }}" method="POST">
+                <form action="{{ url('alternatif_kriteria') }}" method="POST">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <input name="nama_alternatif" class="modal-title" id="namaAlternatif">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
                                 @csrf
                                 <input name="id_alternatif" id="idAlternatif" type="hidden">
                                 @foreach ($kriteria as $krt)
@@ -119,20 +116,44 @@
                                                     <option value="{{ $sk->value }}">{{ $sk->range_kriteria }}</option>
                                                 @endif
                                             @endforeach
-                                            <input name="id[]" id="idKriteria" type="hidden"
-                                                value="{{ $krt->id }}">
-                                            {{-- <input type="text" class="form-control" id="nama"
-                                            placeholder="Masukkan nama alternatif" name="value[]"> --}}
+                                        </select>
+                                        <input name="id[]" id="idKriteria" type="hidden" value="{{ $krt->id }}">
                                     </div>
                                 @endforeach
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {{-- Modal for delete --}}
+            <div class="modal fade" id="deleteAltButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="titleDeleteAlternatif">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah anda yakin ingin menghapus data?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <form action="" method="POST" id="deleteAlternatif">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Hapus</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <script>
@@ -141,11 +162,30 @@
         function setAlternatif(newAlternatif) {
             alternatif = newAlternatif;
             console.log(alternatif);
-            document.getElementById('namaAlternatif').innerHTML = alternatif.nama_alternatif;
+            document.getElementById('namaAlternatif').value = alternatif.nama_alternatif;
             document.getElementById('idAlternatif').value = alternatif.id;
         }
-    </script>
 
+        function deleteAlternatif(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus kriteria ini?')) {
+                var form = document.createElement('form');
+                form.action = '{{ url('alternatif') }}/' + id;
+                form.method = 'POST';
+                form.innerHTML = '<input type="hidden" name="_method" value="DELETE">' + '{{ csrf_field() }}';
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+    <script>
+        function setAlternatif(newAlternatif) {
+            alternatif = newAlternatif;
+
+            // ganti action form dari tag dengan deleteSubForm
+            console.log(alternatif)
+            $('#deleteAlternatif').attr('action', '{{ url('alternatif') }}/' + alternatif.id)
+        }
+    </script>
     <style>
         .custom-table {
             width: 100%;
