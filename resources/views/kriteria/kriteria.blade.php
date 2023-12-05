@@ -21,8 +21,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title"></i>Data Kriteria</h3>
-                <button type="button" class="btn btn-sm btn-success ml-auto" data-toggle="modal"
-                    data-target="#exampleModal">
+                <button type="button" class="btn btn-sm btn-success ml-auto" data-toggle="modal" data-target="#exampleModal">
                     + Tambah Data
                 </button>
             </div>
@@ -54,13 +53,12 @@
                                 </td>
                                 <td>
                                     <button data-toggle="modal" data-target="#modalUpdate"
-                                        onclick="updateKriteria({{ $item }})" class="btn btn-warning">Edit</button>
-                                    {{-- <form action="{{ url('kriteria/' . $item->id) }}" method="POST" class="d-inline"> --}}
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger"
-                                        onclick="deleteKriteria({{ $item->id }})">Hapus</button>
-                                    {{-- </form> --}}
+                                        onclick="updateKriteria({{ $item }})" class="btn btn-warning">Edit
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#deleteKrtButton" onclick="setKriteria({{ $item }})">
+                                        Hapus
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -144,45 +142,82 @@
                     </div>
                 </div>
             </div>
-            <!-- /.card -->
-            <script>
-                // kriteria hold the value of kriteria in json format
-                const kriteria = null;
 
-                function updateKriteria(kriteria) {
-                    kriteria = kriteria;
-                    $('#updateKriteriaId').val(kriteria.id);
-                    $('#updateKriteriaName').val(kriteria.nama_kriteria);
-                    $('#updateKriteriaBobot').val(kriteria.bobot);
-                    if (kriteria.jenis == 1) {
-                        $('#updateKriteriaJenis').prop('checked', true);
-                    } else {
-                        $('#updateKriteriaJenis').prop('checked', false);
-                    }
-                    // change the action url 
-                    $('#modalUpdate form').attr('action', '{{ url('kriteria') }}/' + kriteria.id);
-                    console.log(kriteria);
-                }
-
-                function deleteKriteria(id) {
-                    if (confirm('Apakah Anda yakin ingin menghapus kriteria ini?')) {
-                        var form = document.createElement('form');
-                        form.action = '{{ url('kriteria') }}/' + id;
-                        form.method = 'POST';
-                        form.innerHTML = '<input type="hidden" name="_method" value="DELETE">' + '{{ csrf_field() }}';
-                        document.body.appendChild(form);
-                        form.submit();
-                    }
-                }
-            </script>
+            {{-- Modal for delete --}}
+            <div class="modal fade" id="deleteKrtButton" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="titleDeleteKriteria">Hapus Kriteria</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah anda yakin ingin menghapus data?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <form action="" method="POST" id="deleteKriteria">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Hapus</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    <script>
+        // kriteria hold the value of kriteria in json format
+        let kriteria = null;
+
+        function updateKriteria(kriteria) {
+            kriteria = kriteria;
+            $('#updateKriteriaId').val(kriteria.id);
+            $('#updateKriteriaName').val(kriteria.nama_kriteria);
+            $('#updateKriteriaBobot').val(kriteria.bobot);
+            if (kriteria.jenis == 1) {
+                $('#updateKriteriaJenis').prop('checked', true);
+            } else {
+                $('#updateKriteriaJenis').prop('checked', false);
+            }
+            // change the action url 
+            $('#modalUpdate form').attr('action', '{{ url('kriteria') }}/' + kriteria.id);
+            console.log(kriteria);
+        }
+
+        function deleteKriteria(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus kriteria ini?')) {
+                var form = document.createElement('form');
+                form.action = '{{ url('kriteria') }}/' + id;
+                form.method = 'POST';
+                form.innerHTML = '<input type="hidden" name="_method" value="DELETE">' + '{{ csrf_field() }}';
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+    <script>
+        function setKriteria(newKriteria) {
+            kriteria = newKriteria;
+
+            // ganti action form dari tag dengan deleteKriteria
+            console.log(kriteria)
+            $('#deleteKriteria').attr('action', '{{ url('kriteria') }}/' + kriteria.id)
+
+        }
+    </script>
     <style>
         .custom-table {
             width: 100%;
             border-collapse: collapse;
         }
-    
-        .custom-table th, .custom-table td {
+
+        .custom-table th,
+        .custom-table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
