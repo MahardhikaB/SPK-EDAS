@@ -32,6 +32,13 @@
 </head>
 <body class="hold-transition sidebar-mini">
 
+        <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
 <!-- Site wrapper -->
 <div class="wrapper">
     <!-- Navbar -->
