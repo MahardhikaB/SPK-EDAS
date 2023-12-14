@@ -35,7 +35,7 @@ class PerhitunganController extends Controller
             }
         }
 
-        // menghitung nilai pda dengan rumus max(0, (nilai - av) / (av)) untuk cost, dan max(0, (av - nilai) / (av)) untuk benefit
+        // menghitung nilai nda dengan rumus max(0, (nilai - av) / (av)) untuk cost, dan max(0, (av - nilai) / (av)) untuk benefit
         $nda = [];
         foreach ($alternatifKriteriaGrouped as $ak) {
             foreach ($ak as $a) {

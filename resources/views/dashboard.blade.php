@@ -23,7 +23,9 @@
             <h3 class="card-title"><i class="nav-icon fas fa-tachometer-alt"></i> Dashboard</h3>
             </div>
             <div class="card-body">
-
+              <object data="{{ asset('document/JURNAL EDAS.pdf') }}" type="application/pdf" width="100%" height="700px" class="mt-2">
+                <p>Unable to display PDF file. <a href="{{ asset('document/JURNAL EDAS.pdf') }}" target="_blank">Download</a> instead.</p>
+            </object>
             </div>
         <!-- /.card -->
 

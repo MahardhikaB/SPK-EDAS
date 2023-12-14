@@ -53,7 +53,7 @@
                                 @endforeach
                                 <td>
                                     <button data-toggle="modal" data-target="#inputNilai"
-                                        onclick='setAlternatif(@json($item))' class="btn btn-warning">Input
+                                        onclick='updateAlternatif(@json($item))' class="btn btn-warning">Input
                                         Nilai</button>
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                         data-target="#deleteAltButton" onclick="setAlternatif({{ $item }})">
@@ -159,7 +159,7 @@
     <script>
         let alternatif;
 
-        function setAlternatif(newAlternatif) {
+        function updateAlternatif(newAlternatif) {
             alternatif = newAlternatif;
             console.log(alternatif);
             document.getElementById('namaAlternatif').value = alternatif.nama_alternatif;

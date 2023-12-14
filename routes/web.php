@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('kriteria');
+    return view ('dashboard');
 });
 Route::resource('kriteria', KriteriaController::class);
 Route::resource('sub_kriteria', SubKriteriaController::class);
